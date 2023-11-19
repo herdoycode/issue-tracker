@@ -11,11 +11,6 @@ const Navbar = () => {
     { link: "/issues", label: "Issues" },
   ];
 
-  const linkClass = (link: string) => {
-    let classes = "hover:text-zinc-900 transition-colors text-zinc-";
-    return currentPath === link ? (classes += "900") : (classes += "500");
-  };
-
   return (
     <Container className="border-b mb-5">
       <nav className="flex items-center gap-4 py-4">
@@ -24,8 +19,15 @@ const Navbar = () => {
         </Link>
         <ul className="flex items-center gap-3">
           {navLinks.map(({ label, link }) => (
-            <li>
-              <Link className={linkClass(link)} key={label} href={link}>
+            <li key={label}>
+              <Link
+                className={`hover:text-zinc-900 transition-colors ${
+                  link === currentPath
+                    ? "hover:text-zinc-900 transition-colors text-zinc-900"
+                    : "hover:text-zinc-900 transition-colors text-zinc-500"
+                }`}
+                href={link}
+              >
                 {label}
               </Link>
             </li>

@@ -21,7 +21,11 @@ const NewIssue = () => {
     >
       <div className="mb-3">
         <TextField.Root>
-          <TextField.Input {...register("title")} placeholder="Title..." />
+          <TextField.Input
+            {...register("title")}
+            type="text"
+            placeholder="Title..."
+          />
         </TextField.Root>
         {errors.title && <Text color="red"> {errors.title.message} </Text>}
       </div>
