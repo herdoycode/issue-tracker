@@ -11,9 +11,9 @@ const Navbar = () => {
     { link: "/issues", label: "Issues" },
   ];
 
-  const linkClass = (path: string) => {
+  const linkClass = (link: string) => {
     let classes = "hover:text-zinc-900 transition-colors text-zinc-";
-    return currentPath === path ? (classes += "900") : (classes += "500");
+    return currentPath === link ? (classes += "900") : (classes += "500");
   };
 
   return (
