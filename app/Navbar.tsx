@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <Container className="border-b">
+    <Container className="border-b mb-5">
       <nav className="flex items-center gap-4 py-4">
         <Link className="text-2xl" href="/">
           <IoBug />
