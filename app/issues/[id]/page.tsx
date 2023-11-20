@@ -1,14 +1,7 @@
 import prisma from "@/prisma/client";
-import {
-  Badge,
-  Box,
-  Button,
-  Card,
-  Flex,
-  Heading,
-  Text,
-} from "@radix-ui/themes";
+import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import IssueStatusBadge from "../_components/IssueStatusBadge";
+import Link from "next/link";
 
 interface Props {
   params: { id: string };
@@ -34,7 +27,9 @@ const Issue = async ({ params }: Props) => {
           </Card>
         </Box>
         <Box>
-          <Button color="yellow">Edit Issue</Button>
+          <Button color="yellow">
+            <Link href={`/issues/${issue.id}/edit`}>Edit Issue</Link>
+          </Button>
         </Box>
       </Flex>
     </div>
