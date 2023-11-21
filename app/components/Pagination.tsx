@@ -7,7 +7,7 @@ import {
   FaAnglesRight,
 } from "react-icons/fa6";
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   itemsCount: number;
@@ -17,10 +17,16 @@ interface Props {
 
 const Pagination = ({ itemsCount, pageSize, currentPage }: Props) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const pageCount = Math.ceil(itemsCount / pageSize);
 
   const onPageChange = (page: number) => {
-    router.push(`/issues?page=${page}`);
+    const parmas = new URLSearchParams();
+    if (page) parmas.append("page", page.toString());
+    if (searchParams.get("status"))
+      parmas.append("status", searchParams.get("status")!);
+    const query = parmas.toString();
+    router.push("/issues?" + query);
   };
 
   return (
