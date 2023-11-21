@@ -1,8 +1,8 @@
 import { Issue, Status } from "@prisma/client";
 import { Flex, Table } from "@radix-ui/themes";
 import Link from "next/link";
-import IssueStatusBadge from "./_components/IssueStatusBadge";
 import { FaSortUp } from "react-icons/fa6";
+import IssueStatusBadge from "./_components/IssueStatusBadge";
 
 export interface IssueQuery {
   status: Status;
