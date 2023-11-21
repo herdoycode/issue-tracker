@@ -1,7 +1,8 @@
 import { Issue, Status } from "@prisma/client";
-import { Table } from "@radix-ui/themes";
+import { Flex, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import IssueStatusBadge from "./_components/IssueStatusBadge";
+import { FaSortUp } from "react-icons/fa6";
 
 export interface IssueQuery {
   status: Status;
@@ -21,11 +22,14 @@ const IssuesTable = ({ searchParams, issues }: Props) => {
         <Table.Row>
           {columns.map((column) => (
             <Table.ColumnHeaderCell>
-              <Link
-                href={{ query: { ...searchParams, orderBy: column.value } }}
-              >
-                {column.label}
-              </Link>
+              <Flex align="center" gap="1">
+                <Link
+                  href={{ query: { ...searchParams, orderBy: column.value } }}
+                >
+                  {column.label}
+                </Link>
+                {column.value === searchParams.orderBy && <FaSortUp />}
+              </Flex>
             </Table.ColumnHeaderCell>
           ))}
         </Table.Row>
