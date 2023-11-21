@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
-import IssueStatusBadge from "../_components/IssueStatusBadge";
 import Link from "next/link";
+import IssueStatusBadge from "../_components/IssueStatusBadge";
 
 interface Props {
   params: { id: string };

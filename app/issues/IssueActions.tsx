@@ -1,6 +1,6 @@
 import { Box, Button, Flex } from "@radix-ui/themes";
-import IssueStatusFilter from "./IssueStatusFilter";
 import Link from "next/link";
+import IssueStatusFilter from "./IssueStatusFilter";
 
 const IssueActions = () => {
   return (

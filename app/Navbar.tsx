@@ -1,5 +1,5 @@
 "use client";
-import { Avatar, Box, Container, DropdownMenu, Flex } from "@radix-ui/themes";
+import { Avatar, Container, DropdownMenu, Flex } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,7 +7,6 @@ import { IoBug } from "react-icons/io5";
 
 const Navbar = () => {
   const { data, status } = useSession();
-
   const currentPath = usePathname();
   const navLinks = [
     { link: "/dashboard", label: "Dashboard" },
