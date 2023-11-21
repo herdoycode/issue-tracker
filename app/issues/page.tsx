@@ -14,9 +14,13 @@ const Issues = async ({ searchParams }: Props) => {
   const pageSize = 5;
   const page = parseInt(searchParams.page) || 1;
 
+  const status = Object.values(Status).includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+
   const issues = await prisma.issue.findMany({
     where: {
-      status: searchParams.status,
+      status,
     },
     skip: (page - 1) * pageSize,
     take: pageSize,
@@ -24,7 +28,7 @@ const Issues = async ({ searchParams }: Props) => {
 
   const issuesCount = await prisma.issue.count({
     where: {
-      status: searchParams.status,
+      status,
     },
   });
 
