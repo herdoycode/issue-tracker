@@ -21,7 +21,7 @@ const IssuesTable = ({ searchParams, issues }: Props) => {
       <Table.Header>
         <Table.Row>
           {columns.map((column) => (
-            <Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell key={column.value}>
               <Flex align="center" gap="1">
                 <Link
                   href={{ query: { ...searchParams, orderBy: column.value } }}
