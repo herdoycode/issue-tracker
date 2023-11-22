@@ -1,7 +1,17 @@
 import prisma from "@/prisma/client";
-import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import {
+  AlertDialog,
+  Box,
+  Button,
+  Card,
+  Flex,
+  Heading,
+  Text,
+} from "@radix-ui/themes";
 import Link from "next/link";
 import IssueStatusBadge from "../_components/IssueStatusBadge";
+import DeleteIssueButton from "./DeleteIssueButton";
+import EditIssueButton from "./EditIssueButton";
 
 interface Props {
   params: { id: string };
@@ -26,11 +36,10 @@ const Issue = async ({ params }: Props) => {
             <Text> {issue.description} </Text>
           </Card>
         </Box>
-        <Box>
-          <Button color="yellow">
-            <Link href={`/issues/${issue.id}/edit`}>Edit Issue</Link>
-          </Button>
-        </Box>
+        <Flex direction="column" gap="2">
+          <EditIssueButton issueId={issue.id} />
+          <DeleteIssueButton issueId={issue.id} />
+        </Flex>
       </Flex>
     </div>
   );
