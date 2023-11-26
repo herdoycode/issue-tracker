@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { issueValidate } from "./validate";
-import prisma from "@/prisma/client";
+import prisma from "@/prisma/clinet";
 
 export async function POST(request: NextRequest) {
   try {

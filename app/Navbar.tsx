@@ -43,6 +43,7 @@ const Navbar = () => {
           <DropdownMenu.Root>
             <DropdownMenu.Trigger>
               <Avatar
+                crossOrigin="anonymous"
                 src={data?.user?.image!}
                 fallback="User image"
                 size="2"

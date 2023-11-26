@@ -1,6 +1,6 @@
-import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { issueValidate } from "../validate";
+import prisma from "@/prisma/clinet";
 
 interface Props {
   params: { id: string };
@@ -22,7 +22,11 @@ export async function PUT(request: NextRequest, { params }: Props) {
       );
     const updatedIssue = await prisma.issue.update({
       where: { id: issue.id },
-      data: { title: body.title, description: body.description },
+      data: {
+        title: body.title,
+        description: body.description,
+        userId: body.userId,
+      },
     });
     return NextResponse.json(updatedIssue);
   } catch (error) {

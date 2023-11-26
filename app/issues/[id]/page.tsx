@@ -1,15 +1,7 @@
-import prisma from "@/prisma/client";
-import {
-  AlertDialog,
-  Box,
-  Button,
-  Card,
-  Flex,
-  Heading,
-  Text,
-} from "@radix-ui/themes";
-import Link from "next/link";
+import prisma from "@/prisma/clinet";
+import { Box, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import IssueStatusBadge from "../_components/IssueStatusBadge";
+import AssigneeSelect from "./AssigneeSelect";
 import DeleteIssueButton from "./DeleteIssueButton";
 import EditIssueButton from "./EditIssueButton";
 
@@ -37,6 +29,7 @@ const Issue = async ({ params }: Props) => {
           </Card>
         </Box>
         <Flex direction="column" gap="2">
+          <AssigneeSelect issue={issue} />
           <EditIssueButton issueId={issue.id} />
           <DeleteIssueButton issueId={issue.id} />
         </Flex>
