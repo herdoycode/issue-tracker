@@ -3,8 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { Button, Text, TextField } from "@radix-ui/themes";
 import Joi from "joi";
 import { Controller, useForm } from "react-hook-form";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import MDEditor from "@uiw/react-md-editor";
 
 type Inputs = {
   title: string;
@@ -36,7 +35,7 @@ const IssueForm = () => {
         <Controller
           name="description"
           control={control}
-          render={({ field }) => <ReactQuill {...field} />}
+          render={({ field }) => <MDEditor {...field} />}
         />
         {errors.description && (
           <Text color="red"> {errors.description.message} </Text>

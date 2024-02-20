@@ -56,7 +56,9 @@ const Issues = async ({ searchParams }: Props) => {
           {issues.map((issue) => (
             <Table.Row key={issue.id}>
               <Table.RowHeaderCell>
-                {issue.title}
+                <Link className="text-blue-600" href={`/issues/${issue.id}`}>
+                  {issue.title}
+                </Link>
                 <div className="block md:hidden mt-1">
                   <IssueStatusBadge status={issue.status} />
                 </div>
@@ -65,8 +67,7 @@ const Issues = async ({ searchParams }: Props) => {
                 <IssueStatusBadge status={issue.status} />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {" "}
-                {issue.createdAt.toDateString()}{" "}
+                {issue.createdAt.toDateString()}
               </Table.Cell>
             </Table.Row>
           ))}
