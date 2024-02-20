@@ -8,6 +8,7 @@ import { Issue } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 interface Props {
   issue?: Issue;
@@ -24,6 +25,7 @@ const schema = Joi.object({
 });
 
 const IssueForm = ({ issue }: Props) => {
+  const [submiting, setSubmiting] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -36,24 +38,38 @@ const IssueForm = ({ issue }: Props) => {
     <form
       onSubmit={handleSubmit((data) => {
         if (issue) {
+          setSubmiting(true);
           axios
-            .patch("/api/issues", {
-              title: issue.title,
-              description: issue.description,
+            .patch(`/api/issues/${issue.id}`, {
+              title: data.title,
+              description: data.description,
             })
             .then(() => {
               reset();
+              setSubmiting(false);
               router.push("/issues");
+              router.refresh();
+              toast.warning("Successfully Updated Issue.");
             })
-            .catch(() => toast.error("something went wrong!"));
+            .catch(() => {
+              setSubmiting(false);
+              toast.error("something went wrong!");
+            });
         } else {
+          setSubmiting(true);
           axios
             .post("/api/issues", data)
             .then(() => {
               reset();
+              setSubmiting(false);
               router.push("/issues");
+              router.refresh();
+              toast.success("Successfully Create Issue.");
             })
-            .catch(() => toast.error("something went wrong!"));
+            .catch(() => {
+              setSubmiting(false);
+              toast.error("something went wrong!");
+            });
         }
       })}
       className="space-y-4"
@@ -77,7 +93,9 @@ const IssueForm = ({ issue }: Props) => {
           <Text color="red"> {errors.description.message} </Text>
         )}
       </div>
-      <Button>Submit Issue</Button>
+      <Button disabled={submiting}>
+        {submiting ? "Loading..." : "Submit Issue"}
+      </Button>
     </form>
   );
 };

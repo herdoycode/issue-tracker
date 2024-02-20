@@ -21,6 +21,9 @@ const Issues = async ({ searchParams }: Props) => {
     where: {
       status: searchParams.status,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
     skip: (page - 1) * pageSize,
     take: pageSize,
   });

@@ -12,7 +12,7 @@ const Nav = () => {
   ];
 
   const setNavClassName = (path: string) => {
-    let classes = "hover:text-zinc-400 transition-colors ";
+    let classes = "hover:text-zinc-900 transition-colors ";
     return path === currentPath
       ? (classes += "text-zinc-900")
       : (classes += "text-zinc-400");
