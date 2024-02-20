@@ -1,8 +1,24 @@
 import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
 import IssueStatusBadge from "../components/IssueStatusBadge";
-const Issues = async () => {
-  const issues = await prisma.issue.findMany();
+import Pagination from "../components/Pagination";
+
+interface Props {
+  searchParams: {
+    page: string;
+  };
+}
+
+const Issues = async ({ searchParams }: Props) => {
+  const page = parseInt(searchParams.page) || 1;
+
+  const pageSize = 6;
+  const issues = await prisma.issue.findMany({
+    skip: (page - 1) * pageSize,
+    take: pageSize,
+  });
+
+  const issueCount = await prisma.issue.count();
 
   return (
     <main className="px-2 md:px-0">
@@ -39,6 +55,11 @@ const Issues = async () => {
           ))}
         </Table.Body>
       </Table.Root>
+      <Pagination
+        itemCount={issueCount}
+        currentPage={page}
+        pageSize={pageSize}
+      />
     </main>
   );
 };
