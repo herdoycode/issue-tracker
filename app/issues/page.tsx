@@ -1,11 +1,14 @@
 import prisma from "@/prisma/client";
-import { Table } from "@radix-ui/themes";
+import { Box, Table } from "@radix-ui/themes";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import Pagination from "../components/Pagination";
+import IssueStatusFilter from "./IssueStatusFilter";
+import { Status } from "@prisma/client";
 
 interface Props {
   searchParams: {
     page: string;
+    status: Status;
   };
 }
 
@@ -14,14 +17,24 @@ const Issues = async ({ searchParams }: Props) => {
 
   const pageSize = 6;
   const issues = await prisma.issue.findMany({
+    where: {
+      status: searchParams.status,
+    },
     skip: (page - 1) * pageSize,
     take: pageSize,
   });
 
-  const issueCount = await prisma.issue.count();
+  const issueCount = await prisma.issue.count({
+    where: {
+      status: searchParams.status,
+    },
+  });
 
   return (
     <main className="px-2 md:px-0">
+      <Box py="3">
+        <IssueStatusFilter />
+      </Box>
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
