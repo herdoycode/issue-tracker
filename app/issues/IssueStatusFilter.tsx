@@ -15,6 +15,7 @@ const IssueStatusFilter = () => {
 
   const onValueChange = (value: string) => {
     const params = new URLSearchParams(searchParams);
+    params.delete("page");
     value === "all" ? params.delete("status") : params.set("status", value);
     router.push("?" + params.toString());
   };

@@ -10,20 +10,26 @@ interface Props {
   searchParams: {
     page: string;
     status: Status;
+    orderBy: "title" | "description" | "createdAt";
   };
 }
 
 const Issues = async ({ searchParams }: Props) => {
+  // SetPage for paginate
   const page = parseInt(searchParams.page) || 1;
 
   const pageSize = 6;
+
+  // SetOrderBy for sorting issues
+  const orderBy = searchParams.orderBy
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
+
   const issues = await prisma.issue.findMany({
     where: {
       status: searchParams.status,
     },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy,
     skip: (page - 1) * pageSize,
     take: pageSize,
   });
