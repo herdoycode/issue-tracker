@@ -1,9 +1,10 @@
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
-import { Box, Table } from "@radix-ui/themes";
+import { Box, Button, Flex, Table } from "@radix-ui/themes";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import Pagination from "../components/Pagination";
 import IssueStatusFilter from "./IssueStatusFilter";
+import Link from "next/link";
 
 interface Props {
   searchParams: {
@@ -32,9 +33,12 @@ const Issues = async ({ searchParams }: Props) => {
 
   return (
     <main className="px-2 md:px-0">
-      <Box py="3">
+      <Flex align="center" justify="between" py="3">
         <IssueStatusFilter />
-      </Box>
+        <Button>
+          <Link href="/issues/new">New Issue</Link>
+        </Button>
+      </Flex>
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
