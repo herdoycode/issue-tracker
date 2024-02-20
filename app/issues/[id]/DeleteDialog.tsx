@@ -15,7 +15,7 @@ const DeleteDialog = ({ issueId }: Props) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Button color="red" size="2">
+        <Button className="w-full" color="red" size="2">
           Delete Issue
         </Button>
       </Dialog.Trigger>

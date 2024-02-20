@@ -18,7 +18,7 @@ const EditIssuePage = async ({ params }: Props) => {
     <main className="flex items-center justify-center px-2 md:px-0">
       <Box className="w-full md:w-[600px]">
         <Heading align="center" mb="4" size={{ initial: "7", sm: "8" }}>
-          Create New Issue
+          Edit this issue
         </Heading>
         <IssueForm issue={issue!} />
       </Box>

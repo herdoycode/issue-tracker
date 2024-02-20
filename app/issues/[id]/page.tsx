@@ -3,6 +3,7 @@ import prisma from "@/prisma/client";
 import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import DeleteDialog from "./DeleteDialog";
+import AssigneeSelect from "./AssigneeSelect";
 interface Props {
   params: {
     id: string;
@@ -28,8 +29,15 @@ const IssueDetailsPage = async ({ params }: Props) => {
           <IssueStatusBadge status={issue?.status!} />
           <Card className="mt-5 prose">{issue?.description}</Card>
         </Box>
-        <Flex align="center" gap="4" px={{ initial: "0", sm: "4" }}>
-          <Button color="yellow">
+        <Flex
+          direction="column"
+          align="center"
+          gap="4"
+          px={{ initial: "0", sm: "4" }}
+          className="w-[200px]"
+        >
+          <AssigneeSelect />
+          <Button color="yellow" className="w-full">
             <Link href={`/issues/${issue?.id}/edit`}>Edit Issue</Link>
           </Button>
           <DeleteDialog issueId={issue?.id!} />
