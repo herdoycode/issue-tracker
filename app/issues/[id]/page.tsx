@@ -1,6 +1,7 @@
 import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import prisma from "@/prisma/client";
 import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import Link from "next/link";
 interface Props {
   params: {
     id: string;
@@ -28,7 +29,7 @@ const IssueDetailsPage = async ({ params }: Props) => {
         </Box>
         <Flex align="center" gap="4" px={{ initial: "0", sm: "4" }}>
           <Button size="1" color="yellow">
-            Edit Issue
+            <Link href={`/issues/${issue?.id}/edit`}>Edit Issue</Link>
           </Button>
           <Button size="1" color="red">
             Delete Issue
