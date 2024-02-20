@@ -46,6 +46,7 @@ const IssuesTable = ({ issues }: Props) => {
         <Table.Row>
           {columns.map((column) => (
             <Table.ColumnHeaderCell
+              key={column.label}
               onClick={() => onSortIssue(column.value)}
               className={column.className}
             >
