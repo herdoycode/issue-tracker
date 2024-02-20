@@ -1,7 +1,11 @@
-import React from "react";
+import { Button, Container } from "@radix-ui/themes";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <Container>
+      <Button>Hello</Button>
+    </Container>
+  );
 };
 
 export default Home;
