@@ -2,9 +2,9 @@ import { Button, Container } from "@radix-ui/themes";
 
 const Home = () => {
   return (
-    <Container>
+    <main className="px-2 md:px-0">
       <Button>Hello</Button>
-    </Container>
+    </main>
   );
 };
 
