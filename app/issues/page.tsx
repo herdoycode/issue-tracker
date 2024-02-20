@@ -1,9 +1,9 @@
 import prisma from "@/prisma/client";
+import { Status } from "@prisma/client";
 import { Box, Table } from "@radix-ui/themes";
 import IssueStatusBadge from "../components/IssueStatusBadge";
 import Pagination from "../components/Pagination";
 import IssueStatusFilter from "./IssueStatusFilter";
-import { Status } from "@prisma/client";
 
 interface Props {
   searchParams: {

@@ -29,7 +29,9 @@ const IssueStatusFilter = () => {
         <Select.Group>
           <Select.Item value="all">All</Select.Item>
           {statuses.map((status) => (
-            <Select.Item value={status.value}> {status.label} </Select.Item>
+            <Select.Item key={status.value} value={status.value}>
+              {status.label}
+            </Select.Item>
           ))}
         </Select.Group>
       </Select.Content>
