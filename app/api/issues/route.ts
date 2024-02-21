@@ -1,5 +1,5 @@
-import Joi from "joi";
 import prisma from "@/prisma/client";
+import Joi from "joi";
 import { NextRequest, NextResponse } from "next/server";
 
 interface Issue {

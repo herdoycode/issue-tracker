@@ -1,14 +1,14 @@
 "use client";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { Button, Text, TextField } from "@radix-ui/themes";
-import Joi from "joi";
-import { Controller, useForm } from "react-hook-form";
-import MDEditor from "@uiw/react-md-editor";
 import { Issue } from "@prisma/client";
+import { Button, Text, TextField } from "@radix-ui/themes";
+import MDEditor from "@uiw/react-md-editor";
 import axios from "axios";
+import Joi from "joi";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface Props {
   issue?: Issue;
@@ -32,7 +32,7 @@ const IssueForm = ({ issue }: Props) => {
     control,
     reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<Inputs>({ resolver: joiResolver(schema) });
   return (
     <form
@@ -51,9 +51,11 @@ const IssueForm = ({ issue }: Props) => {
               router.refresh();
               toast.warning("Successfully Updated Issue.");
             })
-            .catch(() => {
+            .catch((err) => {
               setSubmiting(false);
-              toast.error("something went wrong!");
+              err.response.status === 401
+                ? toast.error("Unauthorized Access Detected.")
+                : toast.error("Something went wrong!");
             });
         } else {
           setSubmiting(true);
@@ -93,7 +95,7 @@ const IssueForm = ({ issue }: Props) => {
           <Text color="red"> {errors.description.message} </Text>
         )}
       </div>
-      <Button disabled={submiting}>
+      <Button disabled={submiting || !isValid}>
         {submiting ? "Loading..." : "Submit Issue"}
       </Button>
     </form>

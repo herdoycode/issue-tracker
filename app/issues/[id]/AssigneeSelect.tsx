@@ -38,7 +38,11 @@ const AssigneeSelect = ({ issueId, userId }: Props) => {
                 .then(() => {
                   toast.success("Successfully Assigned."), router.refresh();
                 })
-                .catch(() => toast.error("Something went wrong!"))
+                .catch((err) => {
+                  err.response.status === 401
+                    ? toast.error("Unauthorized Access Detected.")
+                    : toast.error("Something went wrong!");
+                })
             }
             key={user.id}
           >
