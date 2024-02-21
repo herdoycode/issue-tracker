@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
+import { NextRequest, NextResponse } from "next/server";
 
 interface Props {
   params: {
@@ -19,6 +19,7 @@ export async function PATCH(request: NextRequest, { params }: Props) {
     data: {
       title: body.title,
       description: body.description,
+      userId: body.userId,
     },
   });
   return NextResponse.json(updatedIssue);

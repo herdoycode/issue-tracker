@@ -2,8 +2,8 @@ import IssueStatusBadge from "@/app/components/IssueStatusBadge";
 import prisma from "@/prisma/client";
 import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
 import Link from "next/link";
-import DeleteDialog from "./DeleteDialog";
 import AssigneeSelect from "./AssigneeSelect";
+import DeleteDialog from "./DeleteDialog";
 interface Props {
   params: {
     id: string;
@@ -36,7 +36,7 @@ const IssueDetailsPage = async ({ params }: Props) => {
           px={{ initial: "0", sm: "4" }}
           className="w-[200px]"
         >
-          <AssigneeSelect />
+          <AssigneeSelect issueId={issue?.id!} userId={issue?.userId || ""} />
           <Button color="yellow" className="w-full">
             <Link href={`/issues/${issue?.id}/edit`}>Edit Issue</Link>
           </Button>
