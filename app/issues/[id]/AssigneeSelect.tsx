@@ -24,7 +24,7 @@ const AssigneeSelect = ({ issueId, userId }: Props) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <Button variant="soft" className="w-full">
+        <Button variant="soft" className="w-full bg-[--accent-a4]">
           Assign to user
           <CaretDownIcon />
         </Button>
