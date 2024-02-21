@@ -45,9 +45,11 @@ const DeleteDialog = ({ issueId }: Props) => {
                     router.push("/issues");
                     router.refresh();
                   })
-                  .catch(() => {
+                  .catch((err) => {
                     setLoading(false);
-                    toast.error("Something went wrong!");
+                    err.response.status === 401
+                      ? toast.error("Unauthorized Access Detected.")
+                      : toast.error("Something went wrong!");
                   });
               }}
               color="red"
