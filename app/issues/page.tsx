@@ -1,9 +1,7 @@
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
-import { Button, Flex } from "@radix-ui/themes";
-import Link from "next/link";
 import Pagination from "../components/Pagination";
-import IssueStatusFilter from "./IssueStatusFilter";
+import IssueActions from "./IssueActions";
 import IssuesTable from "./IssuesTable";
 
 interface Props {
@@ -42,12 +40,7 @@ const Issues = async ({ searchParams }: Props) => {
 
   return (
     <main className="px-2 md:px-0">
-      <Flex align="center" justify="between" py="3">
-        <IssueStatusFilter />
-        <Button>
-          <Link href="/issues/new">New Issue</Link>
-        </Button>
-      </Flex>
+      <IssueActions />
       <IssuesTable issues={issues} />
       <Pagination
         itemCount={issueCount}
