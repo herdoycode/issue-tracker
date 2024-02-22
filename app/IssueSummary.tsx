@@ -1,5 +1,4 @@
-import { Card, Flex, Text, Heading } from "@radix-ui/themes";
-import React from "react";
+import { Card, Flex, Heading, Text } from "@radix-ui/themes";
 
 interface Props {
   open: number;
